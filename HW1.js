@@ -142,7 +142,10 @@ console.log(expression.replace(/[аоуіиеяюєї]/gi,""))
 let m = 0.8;
 let km = m/1000; 
 
-if (m ==1) {
+if (m.toString().includes(".")) {
+                 console.log(`${m} метрa це ${km} кілометра`)
+}
+else if (m ==1) {
                  console.log(`${m} метр це ${km} кілометра`)
 } else if (m > 1 && m <5){
                  console.log(`${m} метри це ${km} кілометра`)
@@ -154,10 +157,12 @@ if (m ==1) {
                  console.log(`${m} метри це ${km} кілометра`)
 } else if (!(m.toString().endsWith(2) || m.toString().endsWith(3) || m.toString().endsWith(4)) && m<1000) {
                 console.log(`${m} метрів це ${km} кілометра`)
+} else if  (km.toString().includes(".")) {
+                console.log(`${m} метрів це ${km} кілометра`)
 } else if (km ==1) {
                 console.log(`${m} метрів це ${km} кілометр`)
 } else if (km>1 && km <5) {
-                console.log(`${m} метрів це ${km} кілометра`)
+                console.log(`${m} метрів це ${km} кілометри`)
 } else if (km>=5 && km<20 ) {
                 console.log(`${m} метрів це ${km} кілометрів`)
 }else if (km.toString().endsWith(1) && km> 20) {
