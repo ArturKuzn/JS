@@ -198,19 +198,19 @@ function convertMetersToKilometers (m) {
  if (mDecimal) {
         endingM = 'метра'
         endingKm = 'кілометра'
-}  else if (m == 1 || (mEndWithOne && m> 20)) {
+}  else if (m == 1 || (mEndWithOne && m > 20)) {
         endingM = 'метр'
         endingKm = 'кілометра'
-} else if ((m > 1 && m <5) || (mEndWithTwo || mEndWithThree || mEndWithFour && m>20 ) ){
+} else if ((m > 1 && m < 5) || (mEndWithTwo || mEndWithThree || mEndWithFour && m > 20 ) ){
         endingM = 'метри'
         endingKm = 'кілометра'
-} else if ((m>=5 && m<20) || (!(mEndWithTwo || mEndWithThree || mEndWithFour) && m<1000) || (km>1 && km <5) || kmDecimal ) {
+} else if ((m >= 5 && m <=20 ) || (!(mEndWithTwo || mEndWithThree || mEndWithFour) && m < 1000)|| kmDecimal ) {
         endingM = 'метрів'
         endingKm = 'кілометра'
-} else if (km ==1 || (kmEndWithOne && km> 20) ) {
+} else if (km == 1 || (kmEndWithOne && km > 20) ) {
         endingM = 'метрів'
         endingKm = 'кілометр'
-} else if (kmEndWithTwo || kmEndWithThree || kmEndWithFour && km>20 ) {
+} else if ((km > 1 && km < 5) || (kmEndWithTwo || kmEndWithThree || kmEndWithFour && km > 20) ) {
         endingM = 'метрів'
         endingKm = 'кілометри'
 } else {
@@ -223,3 +223,28 @@ return finalResult;
 
 console.log(convertMetersToKilometers(1));
 
+
+
+// 1) дробне число метр => дробне число кілометр   метра - кілометра                   Шаблон - включає "."
+// 2) 1 метр = 0.001 кілометра
+// 3) 2,3,4 метри - 0.004 кілометра 
+// 4) 5-20 метрів - 0.02 кілометра 
+// 5) 21,31,41,51 .. 51 метр = 0.051 кілометра                                         Шаблон - закінчується на 1
+// 6) 22,23,24,32,33,34 .. 34 метри - 0.034 кілометра                                  Шаблон - закінчується на 2,3,4
+// 7) 35,36,37,38,39,40 ... але не 1000,2000 (!) 40 метрів - 0.04 кілометра            Шаблон - не закінчується на 2,3,4
+// 8) 1000 метрів - 1 кілометр
+// 9)  дробне число кілометр => ціле число метр (№7) метрів - кілометра                Шаблон - включає "."
+// 10) 2,3,4 4000 метрів - 4 кілометри
+// 11) 5-20 20000 метрів - 20 кілометрів
+// 12) 21,31,41 ..  21000 метрів - 21 кілометр                                         Шаблон - закінчується на 1
+// 13) 22,23,24,32,33,34 22000 метрів - 22 кілометри                                   Шаблон - закінчується на 2,3,4
+// 14) 35,36,37,38,39,40 40000 метрів - 40 кілометрів                                  Шаблон - не закінчується на 2,3,4     
+
+
+// 1
+// 2 і 5
+// 3 і 6
+// 4, 7, 9 
+// 8 і 12
+// 10 і 13
+// 11 і 14
